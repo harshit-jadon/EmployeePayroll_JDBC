@@ -5,7 +5,9 @@ import com.bridgelabz.employeepayrolljdbc.entity.EmployeeDetails;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class EmployeePayroll {
     private PreparedStatement preparedStatementName;
@@ -57,7 +59,7 @@ public class EmployeePayroll {
     }
     public void readDBNamePreparedStatement(){
         try (Connection connection = this.getConnection()){
-            String sql = "SELECT * FROM employ_payroll WHERE name = ?";
+            String sql = "SELECT * FROM employee_details WHERE name = ?";
              preparedStatementName = connection.prepareStatement(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -97,7 +99,7 @@ public class EmployeePayroll {
         return employeePayrollList;
     }
     public List<EmployeeDetails> getEmployeeDataForDateRange(LocalDate startDate, LocalDate endDate) {
-        String sql = String.format("SELECT * FROM employ_payroll WHERE start BETWEEN '%s' AND '%s';",
+        String sql = String.format("SELECT * FROM employee_details WHERE start BETWEEN '%s' AND '%s';",
                 Date.valueOf(startDate), Date.valueOf(endDate));
         return this.getEmployeeDataUsingDB(sql);
     }
@@ -113,6 +115,22 @@ public class EmployeePayroll {
         return employeeDetails;
     }
 
+    public Map<String, Double> getAverageSalaryByGender() {
+        String sql = "SELECT gender, AVG(salary) as average_salary FROM employee_details GROUP BY gender;";
+        Map<String, Double> genderToAverageSalaryMap = new HashMap<>();
+        try (Connection connection = this.getConnection()) {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                String gender = resultSet.getString("gender");
+                double salary = resultSet.getDouble("average_salary");
+                genderToAverageSalaryMap.put(gender, salary);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return genderToAverageSalaryMap;
+    }
 }
 
 

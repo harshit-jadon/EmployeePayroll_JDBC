@@ -4,6 +4,7 @@ import com.bridgelabz.employeepayrolljdbc.entity.EmployeeDetails;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public class EmployeeDB {
     private List<EmployeeDetails> employeeDBList;
@@ -40,5 +41,9 @@ public class EmployeeDB {
     }
     public List<EmployeeDetails> getEmployListInGivenDateRange(LocalDate startDate, LocalDate endDate) {
         return employeePayroll.getEmployeeDataForDateRange(startDate, endDate);
+    }
+
+    public Map<String, Double> readAverageSalaryByGender() {
+        return employeePayroll.getAverageSalaryByGender();
     }
 }

@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public class EmployeeDBTest {
     @Test
@@ -45,5 +46,12 @@ public class EmployeeDBTest {
         LocalDate endDate = LocalDate.now();
         List<EmployeeDetails> employList = employeeDB.getEmployListInGivenDateRange(startDate, endDate);
         Assert.assertEquals(3, employList.size());
+    }
+    @Test
+    public void givenPayrollDataWhenAverageSalaryRetrievedByGenderShouldReturnProperValue() {
+        EmployeeDB employeeDB = new EmployeeDB();
+        Map<String, Double> averageSalaryByGender = employeeDB.readAverageSalaryByGender();
+        Assert.assertTrue(averageSalaryByGender.get("M").equals(2000000.00) &&
+                averageSalaryByGender.get("F").equals(400000.00));
     }
 }
