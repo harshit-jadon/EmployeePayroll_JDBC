@@ -1,6 +1,6 @@
 com/bridgelabz/employeepayrolljdbc/entity/EmployeeDetails.java
  com.bridgelabz.employeepayrolljdbc.entity.EmployeeDetails
-com/bridgelabz/employeepayrolljdbc/service/EmployeePayroll.java
- com.bridgelabz.employeepayrolljdbc.service.EmployeePayroll
 com/bridgelabz/employeepayrolljdbc/connection/DBConnectionDemo.java
  com.bridgelabz.employeepayrolljdbc.connection.DBConnectionDemo
+com/bridgelabz/employeepayrolljdbc/service/EmployeePayroll.java
+ com.bridgelabz.employeepayrolljdbc.service.EmployeePayroll

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.bridgelabz.employeepayrolljdbctest.EmployeeDBTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-06-22T09:03:03" hostname="MD-CJDKE06555KH" time="0.465">
+  <properties/>
+  <testcase name="givenMySqlDatabase_WhenRetrieveDataFromDB_ShouldReturnListOfEmployees" classname="com.bridgelabz.employeepayrolljdbctest.EmployeeDBTest" time="0.465"/>
+  <system-out><![CDATA[..........Connection Successful..........
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
