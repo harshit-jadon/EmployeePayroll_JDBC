@@ -34,6 +34,15 @@ public class EmployeePayroll {
         }
         return employeeDetailsList;
     }
+    public void updateDB(String name, double salary){
+        try(Connection connection = this.getConnection()){
+            Statement statement = connection.createStatement();
+            String sql = String.format("UPDATE employee_details SET Salary = %.2f WHERE Name = '%s';",salary,name);
+            statement.executeUpdate(sql);
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     public static void main(String[] args) {
         System.out.println("Welcome to Employee Payroll using JDBC to Get Database From MYSQL");
     }
