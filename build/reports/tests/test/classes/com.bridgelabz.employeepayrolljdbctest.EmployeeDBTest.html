@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.315s</div>
+<div class="counter">0.261s</div>
 <p>duration</p>
 </div>
 </td>
@@ -76,12 +76,15 @@
 <div id="tab0" class="tab">
 <h2>Failed tests</h2>
 <div class="test">
-<a name="givenNewSalaryForEmployee_WhenUpdated_ShouldSyncWithDB"></a>
-<h3 class="failures">givenNewSalaryForEmployee_WhenUpdated_ShouldSyncWithDB</h3>
+<a name="givenDateRange_WhenRetrieved_ShouldMatchEmployeeCount"></a>
+<h3 class="failures">givenDateRange_WhenRetrieved_ShouldMatchEmployeeCount</h3>
 <span class="code">
-<pre>java.lang.NullPointerException: Cannot invoke &quot;java.util.List.get(int)&quot; because &quot;employeeDetailsList&quot; is null
-	at com.bridgelabz.employeepayrolljdbc.service.EmployeeDB.checkEmployeePayrollSyncWithDb(EmployeeDB.java:24)
-	at com.bridgelabz.employeepayrolljdbctest.EmployeeDBTest.givenNewSalaryForEmployee_WhenUpdated_ShouldSyncWithDB(EmployeeDBTest.java:37)
+<pre>java.lang.AssertionError: expected:&lt;3&gt; but was:&lt;0&gt;
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:645)
+	at org.junit.Assert.assertEquals(Assert.java:631)
+	at com.bridgelabz.employeepayrolljdbctest.EmployeeDBTest.givenDateRange_WhenRetrieved_ShouldMatchEmployeeCount(EmployeeDBTest.java:47)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:78)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -144,8 +147,8 @@
 </tr>
 </thead>
 <tr>
-<td class="failures">givenNewSalaryForEmployee_WhenUpdated_ShouldSyncWithDB</td>
-<td class="failures">0.315s</td>
+<td class="failures">givenDateRange_WhenRetrieved_ShouldMatchEmployeeCount</td>
+<td class="failures">0.261s</td>
 <td class="failures">failed</td>
 </tr>
 </table>
@@ -154,25 +157,20 @@
 <h2>Standard output</h2>
 <span class="code">
 <pre>..........Connection Successful..........
-..........Connection Successful..........
-..........Connection Successful..........
 </pre>
 </span>
 </div>
 <div id="tab3" class="tab">
 <h2>Standard error</h2>
 <span class="code">
-<pre>java.sql.SQLException: No operations allowed after statement closed.
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:89)
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:63)
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:73)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:82)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.setString(ClientPreparedStatement.java:1754)
-	at com.bridgelabz.employeepayrolljdbc.service.EmployeePayroll.getEmployeeData(EmployeePayroll.java:76)
-	at com.bridgelabz.employeepayrolljdbc.service.EmployeeDB.checkEmployeePayrollSyncWithDb(EmployeeDB.java:23)
-	at com.bridgelabz.employeepayrolljdbctest.EmployeeDBTest.givenNewSalaryForEmployee_WhenUpdated_ShouldSyncWithDB(EmployeeDBTest.java:37)
+<pre>java.sql.SQLSyntaxErrorException: Table 'employee_payroll.employ_payroll' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.StatementImpl.executeQuery(StatementImpl.java:1198)
+	at com.bridgelabz.employeepayrolljdbc.service.EmployeePayroll.getEmployeeDataUsingDB(EmployeePayroll.java:108)
+	at com.bridgelabz.employeepayrolljdbc.service.EmployeePayroll.getEmployeeDataForDateRange(EmployeePayroll.java:102)
+	at com.bridgelabz.employeepayrolljdbc.service.EmployeeDB.getEmployListInGivenDateRange(EmployeeDB.java:42)
+	at com.bridgelabz.employeepayrolljdbctest.EmployeeDBTest.givenDateRange_WhenRetrieved_ShouldMatchEmployeeCount(EmployeeDBTest.java:46)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:78)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -220,17 +218,6 @@
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:56)
 	at java.base/java.lang.Thread.run(Thread.java:831)
-Caused by: com.mysql.cj.exceptions.StatementIsClosedException: No operations allowed after statement closed.
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:78)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:85)
-	at com.mysql.cj.jdbc.StatementImpl.checkClosed(StatementImpl.java:338)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.setString(ClientPreparedStatement.java:1751)
-	... 50 more
 </pre>
 </span>
 </div>
@@ -242,7 +229,7 @@ Caused by: com.mysql.cj.exceptions.StatementIsClosedException: No operations all
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.0</a> at 22 Jun 2021, 17:22:54</p>
+<a href="http://www.gradle.org">Gradle 7.0</a> at 22 Jun 2021, 17:36:44</p>
 </div>
 </div>
 </body>

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.bridgelabz.employeepayrolljdbctest.EmployeeDBTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2021-06-22T11:52:54" hostname="MD-CJDKE06555KH" time="0.315">
+<testsuite name="com.bridgelabz.employeepayrolljdbctest.EmployeeDBTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2021-06-22T12:06:44" hostname="MD-CJDKE06555KH" time="0.261">
   <properties/>
-  <testcase name="givenNewSalaryForEmployee_WhenUpdated_ShouldSyncWithDB" classname="com.bridgelabz.employeepayrolljdbctest.EmployeeDBTest" time="0.315">
-    <failure message="java.lang.NullPointerException: Cannot invoke &quot;java.util.List.get(int)&quot; because &quot;employeeDetailsList&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;java.util.List.get(int)&quot; because &quot;employeeDetailsList&quot; is null
-	at com.bridgelabz.employeepayrolljdbc.service.EmployeeDB.checkEmployeePayrollSyncWithDb(EmployeeDB.java:24)
-	at com.bridgelabz.employeepayrolljdbctest.EmployeeDBTest.givenNewSalaryForEmployee_WhenUpdated_ShouldSyncWithDB(EmployeeDBTest.java:37)
+  <testcase name="givenDateRange_WhenRetrieved_ShouldMatchEmployeeCount" classname="com.bridgelabz.employeepayrolljdbctest.EmployeeDBTest" time="0.261">
+    <failure message="java.lang.AssertionError: expected:&lt;3&gt; but was:&lt;0&gt;" type="java.lang.AssertionError">java.lang.AssertionError: expected:&lt;3&gt; but was:&lt;0&gt;
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:645)
+	at org.junit.Assert.assertEquals(Assert.java:631)
+	at com.bridgelabz.employeepayrolljdbctest.EmployeeDBTest.givenDateRange_WhenRetrieved_ShouldMatchEmployeeCount(EmployeeDBTest.java:47)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:78)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -55,20 +58,15 @@
 </failure>
   </testcase>
   <system-out><![CDATA[..........Connection Successful..........
-..........Connection Successful..........
-..........Connection Successful..........
 ]]></system-out>
-  <system-err><![CDATA[java.sql.SQLException: No operations allowed after statement closed.
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:89)
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:63)
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:73)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:82)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.setString(ClientPreparedStatement.java:1754)
-	at com.bridgelabz.employeepayrolljdbc.service.EmployeePayroll.getEmployeeData(EmployeePayroll.java:76)
-	at com.bridgelabz.employeepayrolljdbc.service.EmployeeDB.checkEmployeePayrollSyncWithDb(EmployeeDB.java:23)
-	at com.bridgelabz.employeepayrolljdbctest.EmployeeDBTest.givenNewSalaryForEmployee_WhenUpdated_ShouldSyncWithDB(EmployeeDBTest.java:37)
+  <system-err><![CDATA[java.sql.SQLSyntaxErrorException: Table 'employee_payroll.employ_payroll' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.StatementImpl.executeQuery(StatementImpl.java:1198)
+	at com.bridgelabz.employeepayrolljdbc.service.EmployeePayroll.getEmployeeDataUsingDB(EmployeePayroll.java:108)
+	at com.bridgelabz.employeepayrolljdbc.service.EmployeePayroll.getEmployeeDataForDateRange(EmployeePayroll.java:102)
+	at com.bridgelabz.employeepayrolljdbc.service.EmployeeDB.getEmployListInGivenDateRange(EmployeeDB.java:42)
+	at com.bridgelabz.employeepayrolljdbctest.EmployeeDBTest.givenDateRange_WhenRetrieved_ShouldMatchEmployeeCount(EmployeeDBTest.java:46)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:78)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -116,16 +114,5 @@
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:56)
 	at java.base/java.lang.Thread.run(Thread.java:831)
-Caused by: com.mysql.cj.exceptions.StatementIsClosedException: No operations allowed after statement closed.
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:78)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:85)
-	at com.mysql.cj.jdbc.StatementImpl.checkClosed(StatementImpl.java:338)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.setString(ClientPreparedStatement.java:1751)
-	... 50 more
 ]]></system-err>
 </testsuite>

@@ -6,6 +6,7 @@ import com.bridgelabz.employeepayrolljdbc.service.EmployeePayroll;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class EmployeeDBTest {
@@ -36,5 +37,13 @@ public class EmployeeDBTest {
         employeeDB.updateEmployeeSalary("Harshit", 456123.00);
         boolean result = employeeDB.checkEmployeePayrollSyncWithDb("Harshit");
         Assert.assertTrue(result);
+    }
+    @Test
+    public void givenDateRange_WhenRetrieved_ShouldMatchEmployeeCount() {
+        EmployeeDB employeeDB = new EmployeeDB();
+        LocalDate startDate = LocalDate.of(2019, 01, 01);
+        LocalDate endDate = LocalDate.now();
+        List<EmployeeDetails> employList = employeeDB.getEmployListInGivenDateRange(startDate, endDate);
+        Assert.assertEquals(3, employList.size());
     }
 }

@@ -2,6 +2,7 @@ package com.bridgelabz.employeepayrolljdbc.service;
 
 import com.bridgelabz.employeepayrolljdbc.entity.EmployeeDetails;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class EmployeeDB {
@@ -36,5 +37,8 @@ public class EmployeeDB {
                 .filter(employeePayrollDataItem -> employeePayrollDataItem.name.equals(name))
                 .findFirst()
                 .orElse(null);
+    }
+    public List<EmployeeDetails> getEmployListInGivenDateRange(LocalDate startDate, LocalDate endDate) {
+        return employeePayroll.getEmployeeDataForDateRange(startDate, endDate);
     }
 }
