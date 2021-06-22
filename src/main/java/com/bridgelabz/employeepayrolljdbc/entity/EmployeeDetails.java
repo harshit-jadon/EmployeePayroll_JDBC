@@ -8,12 +8,20 @@ public class EmployeeDetails {
     public String name;
     public double salary;
     public LocalDate startDate;
+    public String gender;
 
     public EmployeeDetails(int id, String name, double salary, LocalDate startDate) {
         this.id = id;
         this.name = name;
         this.salary = salary;
         this.startDate = startDate;
+    }
+    public EmployeeDetails(int id, String name, double salary, LocalDate startDate, String gender) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+        this.startDate = startDate;
+        this.gender = gender;
     }
 
     @Override

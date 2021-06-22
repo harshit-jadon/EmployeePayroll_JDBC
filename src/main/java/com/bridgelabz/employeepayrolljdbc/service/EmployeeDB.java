@@ -2,6 +2,7 @@ package com.bridgelabz.employeepayrolljdbc.service;
 
 import com.bridgelabz.employeepayrolljdbc.entity.EmployeeDetails;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -45,5 +46,12 @@ public class EmployeeDB {
 
     public Map<String, Double> readAverageSalaryByGender() {
         return employeePayroll.getAverageSalaryByGender();
+    }
+
+    public void addEmployeeToPayroll(String name, double salary, LocalDate startDate, String gender) throws SQLException {
+        employeeDBList = this.readEmployeePayrollData();
+        int id = employeePayroll.addNewEmployeeToDB(name,salary,startDate,gender);
+        if(id != -1)
+            this.employeeDBList.add(new EmployeeDetails(id,name,salary,startDate,gender));
     }
 }

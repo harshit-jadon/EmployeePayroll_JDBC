@@ -6,6 +6,7 @@ import com.bridgelabz.employeepayrolljdbc.service.EmployeePayroll;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +46,7 @@ public class EmployeeDBTest {
         LocalDate startDate = LocalDate.of(2019, 01, 01);
         LocalDate endDate = LocalDate.now();
         List<EmployeeDetails> employList = employeeDB.getEmployListInGivenDateRange(startDate, endDate);
-        Assert.assertEquals(3, employList.size());
+        Assert.assertEquals(2, employList.size());
     }
     @Test
     public void givenPayrollDataWhenAverageSalaryRetrievedByGenderShouldReturnProperValue() {
@@ -53,5 +54,14 @@ public class EmployeeDBTest {
         Map<String, Double> averageSalaryByGender = employeeDB.readAverageSalaryByGender();
         Assert.assertTrue(averageSalaryByGender.get("M").equals(2000000.00) &&
                 averageSalaryByGender.get("F").equals(400000.00));
+    }
+    @Test
+    public void givenNewEmployee_WhenAdded_ShouldSyncWithDB() throws SQLException {
+        EmployeeDB employeeDB = new EmployeeDB();
+        List<EmployeeDetails> employList = employeeDB.readEmployeePayrollData();
+        employeeDB.addEmployeeToPayroll("Mark",5000000, LocalDate.now(),"M");
+        boolean result = employeeDB.checkEmployeePayrollSyncWithDb("Mark");
+        Assert.assertTrue(result);
+
     }
 }
