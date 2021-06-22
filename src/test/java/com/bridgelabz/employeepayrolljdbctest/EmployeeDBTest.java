@@ -1,6 +1,7 @@
 package com.bridgelabz.employeepayrolljdbctest;
 
 import com.bridgelabz.employeepayrolljdbc.entity.EmployeeDetails;
+import com.bridgelabz.employeepayrolljdbc.service.EmployeeDB;
 import com.bridgelabz.employeepayrolljdbc.service.EmployeePayroll;
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,5 +28,13 @@ public class EmployeeDBTest {
         List<EmployeeDetails> employeeDetailsList = employeePayroll.readData();
         employeePayroll.updateDBPrepared("Terisa",500000.00);
         Assert.assertEquals(3,employeeDetailsList.size());
+    }
+    @Test
+    public void givenNewSalaryForEmployee_WhenUpdated_ShouldSyncWithDB() {
+        EmployeeDB employeeDB = new EmployeeDB();
+        List<EmployeeDetails> employList = employeeDB.readEmployeePayrollData();
+        employeeDB.updateEmployeeSalary("Harshit", 456123.00);
+        boolean result = employeeDB.checkEmployeePayrollSyncWithDb("Harshit");
+        Assert.assertTrue(result);
     }
 }

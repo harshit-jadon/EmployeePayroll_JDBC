@@ -4,3 +4,5 @@ com/bridgelabz/employeepayrolljdbc/connection/DBConnectionDemo.java
  com.bridgelabz.employeepayrolljdbc.connection.DBConnectionDemo
 com/bridgelabz/employeepayrolljdbc/service/EmployeePayroll.java
  com.bridgelabz.employeepayrolljdbc.service.EmployeePayroll
+com/bridgelabz/employeepayrolljdbc/service/EmployeeDB.java
+ com.bridgelabz.employeepayrolljdbc.service.EmployeeDB
