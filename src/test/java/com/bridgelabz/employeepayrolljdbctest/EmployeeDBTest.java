@@ -21,4 +21,11 @@ public class EmployeeDBTest {
         employeePayroll.updateDB("Terisa",400000.00);
         Assert.assertEquals(3,employeeDetailsList.size());
     }
+    @Test
+    public void givenMySqlDatabase_WhenUpdateTheSalary_shouldReturnUpdatedSalaryByPreparedStatement() {
+        EmployeePayroll employeePayroll = new EmployeePayroll();
+        List<EmployeeDetails> employeeDetailsList = employeePayroll.readData();
+        employeePayroll.updateDBPrepared("Terisa",500000.00);
+        Assert.assertEquals(3,employeeDetailsList.size());
+    }
 }

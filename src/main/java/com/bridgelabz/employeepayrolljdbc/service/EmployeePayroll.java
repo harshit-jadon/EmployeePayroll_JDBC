@@ -16,36 +16,43 @@ public class EmployeePayroll {
         System.out.println("..........Connection Successful..........");
         return connection;
     }
+
     public List<EmployeeDetails> readData() {
         List<EmployeeDetails> employeeDetailsList = new ArrayList<>();
-        try (Connection connection = getConnection()){
+        try (Connection connection = getConnection()) {
             Statement statement = connection.createStatement();
             String sql = "SELECT * FROM employee_details";
             ResultSet resultSet = statement.executeQuery(sql);
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 double salary = resultSet.getDouble("salary");
                 LocalDate startDate = resultSet.getDate("start").toLocalDate();
-                employeeDetailsList.add(new EmployeeDetails(id,name,salary,startDate));
+                employeeDetailsList.add(new EmployeeDetails(id, name, salary, startDate));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return employeeDetailsList;
     }
-    public void updateDB(String name, double salary){
-        try(Connection connection = this.getConnection()){
+    public void updateDB(String name, double salary) {
+        try (Connection connection = this.getConnection()) {
             Statement statement = connection.createStatement();
-            String sql = String.format("UPDATE employee_details SET Salary = %.2f WHERE Name = '%s';",salary,name);
+            String sql = String.format("UPDATE employee_details SET Salary = %.2f WHERE Name = '%s';", salary, name);
             statement.executeUpdate(sql);
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    public static void main(String[] args) {
-        System.out.println("Welcome to Employee Payroll using JDBC to Get Database From MYSQL");
+    public void updateDBPrepared(String name, double salary) {
+        try (Connection connection = this.getConnection()) {
+            String sql = String.format("UPDATE employee_details SET Salary = %.2f WHERE Name = '%s';", salary, name);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-
 }
+
 
